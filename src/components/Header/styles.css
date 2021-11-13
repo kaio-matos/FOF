@@ -1,8 +1,10 @@
 .header {
+  position: absolute;
   display: flex;
   align-items: center;
   padding: 1.5rem 2.5rem;
   width: 100vw;
+  color: var(--neutral-color);
 }
 
 .header_logo {
@@ -21,9 +23,6 @@
   justify-content: center;
   gap: 1rem;
   list-style-type: none;
-}
-
-.header_menu {
 }
 
 .header_search {
