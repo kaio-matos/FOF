@@ -39,3 +39,36 @@ p,
   font-family: var(--primary-font);
   font-weight: 300;
 }
+
+a {
+  font-family: var(--primary-font);
+  font-weight: 700;
+  color: var(--neutral-color);
+  text-decoration: none;
+  transition: 500ms;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+button,
+.button {
+  background-color: var(--primary-color);
+  font-family: var(--primary-font);
+  padding: 0.5em 2em;
+  color: var(--neutral-color);
+
+  outline: none;
+  border: none;
+  border-radius: 0.2em;
+
+  cursor: pointer;
+  transition: 500ms;
+}
+
+button:hover,
+.button:hover {
+  background-color: var(--neutral-color);
+  color: var(--primary-color);
+}

@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  width: 100vw;
+}
+
+.header_logo {
+  width: 100%;
+}
+
+.header_menu {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.header_menu ul {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  list-style-type: none;
+}
+
+.header_menu {
+}
+
+.header_search {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
