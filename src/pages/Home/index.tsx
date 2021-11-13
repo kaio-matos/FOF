@@ -1,8 +1,15 @@
 import "./styles.css";
 import "./styles.css";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useAPI } from "../../contexts/APIContext";
 
 export default function Home() {
+  const { projects, getAllProjects } = useAPI();
+  useEffect(() => {
+    getAllProjects();
+  }, []);
+
   return (
     <main>
       <section className="hero">
@@ -14,7 +21,11 @@ export default function Home() {
           </Link>
         </div>
       </section>
-      <section></section>
+      <section>
+        {projects.map((proj) => {
+          return <div className="card">{proj.title._text}</div>;
+        })}
+      </section>
     </main>
   );
 }
