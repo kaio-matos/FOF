@@ -1,4 +1,9 @@
 :root {
+  --primary-color: #f3593a;
+  --secondary-color: #312f32;
+  --third-color: #262427;
+
+  --neutral-color: #fff;
   --primary-font: "Roboto";
 }
 
