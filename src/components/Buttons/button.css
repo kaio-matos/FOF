@@ -1,0 +1,27 @@
+.button > * {
+  font-family: var(--primary-font);
+  font-weight: 400;
+}
+
+.button {
+  display: flex;
+
+  background-color: var(--primary-color);
+  font-family: var(--primary-font);
+  font-weight: 400;
+  padding: 0.5em 2em;
+  text-transform: uppercase;
+  color: var(--neutral-color);
+
+  outline: none;
+  border: none;
+  border-radius: 0.2em;
+
+  cursor: pointer;
+  transition: 500ms;
+}
+
+.button:hover {
+  background-color: var(--neutral-color);
+  color: var(--primary-color);
+}

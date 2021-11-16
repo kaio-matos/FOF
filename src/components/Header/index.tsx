@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
 import "./styles.css";
+import Button from "../Buttons/Button";
+import CustomLink from "../CustomLink";
 
 export default function Header() {
   return (
@@ -11,17 +12,17 @@ export default function Header() {
       <nav className="header_menu text">
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <CustomLink to="/">Home</CustomLink>
           </li>
           <li>
-            <Link to="/about">About FOF</Link>
+            <CustomLink to="/about">About FOF</CustomLink>
           </li>
         </ul>
       </nav>
       <div className="header_search">
-        <button>
+        <Button>
           <BiSearch fontSize="1.3rem" />
-        </button>
+        </Button>
       </div>
     </header>
   );

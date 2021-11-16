@@ -1,8 +1,7 @@
 import "./styles.css";
-import "./styles.css";
-import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useAPI } from "../../contexts/APIContext";
+import ButtonLink from "../../components/Buttons/ButtonLink";
 
 export default function Home() {
   const { projects, getAllProjects } = useAPI();
@@ -16,9 +15,8 @@ export default function Home() {
         <div>
           <h1>Help us build a culture of helpers</h1>
           <p>We're doing something about it</p>
-          <Link className="button" to="/about">
-            See how
-          </Link>
+
+          <ButtonLink to="/about">See how</ButtonLink>
         </div>
       </section>
       <section>
