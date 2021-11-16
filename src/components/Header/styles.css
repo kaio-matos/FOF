@@ -5,6 +5,7 @@
   padding: 1.5rem 2.5rem;
   width: 100%;
   color: var(--neutral-color);
+  z-index: 999999;
 }
 
 .header_logo {
