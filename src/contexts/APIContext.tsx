@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import GlobalGivingAPI from "../api/api";
 import { projectType } from "../api/types";
 
@@ -15,6 +21,18 @@ export const APIContext = createContext({} as APIContextData);
 
 export function APIContextProvider({ children }: APIContextProviderProps) {
   const [projects, setProjects] = useState([] as projectType[]);
+
+  useEffect(() => {
+    (async () => {
+      const pjs = localStorage.getItem("projects");
+
+      if (pjs) setProjects(JSON.parse(pjs));
+      else {
+        await getAllProjects();
+        localStorage.setItem("projects", JSON.stringify(projects));
+      }
+    })();
+  }, []);
 
   async function getAllProjects() {
     const projs = await GlobalGivingAPI.getAllProjects();

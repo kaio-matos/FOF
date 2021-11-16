@@ -1,13 +1,9 @@
 import "./styles.css";
-import { useEffect } from "react";
 import { useAPI } from "../../contexts/APIContext";
 import ButtonLink from "../../components/Buttons/ButtonLink";
 
 export default function Home() {
-  const { projects, getAllProjects } = useAPI();
-  useEffect(() => {
-    getAllProjects();
-  }, []);
+  const { projects } = useAPI();
 
   return (
     <main>
