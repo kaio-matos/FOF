@@ -20,13 +20,15 @@ type APIContextProviderProps = {
 export const APIContext = createContext({} as APIContextData);
 
 export function APIContextProvider({ children }: APIContextProviderProps) {
-  const [projects, setProjects] = useState([] as projectType[]);
+  const [projects, setProjects] = useState<projectType[]>([]);
 
   useEffect(() => {
     (async () => {
-      const pjs = localStorage.getItem("projects");
+      const pjs: projectType[] = JSON.parse(
+        localStorage.getItem("projects") + ""
+      );
 
-      if (pjs) setProjects(JSON.parse(pjs));
+      if (!pjs || pjs.length) setProjects(pjs);
       else {
         await getAllProjects();
         localStorage.setItem("projects", JSON.stringify(projects));

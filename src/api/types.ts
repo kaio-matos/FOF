@@ -46,4 +46,34 @@ export type projectType = {
   themes: { theme: { id: { _text: string }; name: { _text: string } } };
   title: { _text: string };
   type: { _text: string };
+
+  organization?: {
+    activeProjects: { _text: string };
+    addressLine1: { _text: string };
+    addressLine2: { _text: string };
+    city: { _text: string };
+    countries: {
+      country: {
+        iso3166CountryCode: { _text: string };
+        name: { _text: string };
+      };
+    };
+    country: { _text: string };
+    ein: { _text: string };
+    id: { _text: string };
+    iso3166CountryCode: { _text: string };
+    logoUrl: { _text: string };
+    mission: { _text: string };
+    name: { _text: string };
+    postal: { _text: string };
+    state: { _text: string };
+    themes: {
+      theme: {
+        id: { _text: string };
+        name: { _text: string };
+      }[];
+    };
+    totalProjects: { _text: string };
+    url: { _text: string };
+  };
 };
