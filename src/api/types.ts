@@ -4,13 +4,12 @@ export type projectType = {
   additionalDocumentation: { _text: string };
   approvedDate: { _text: string };
   contactAddress: { _text: string };
-  contactAddress2: { _text: string };
+  contactAddress2?: { _text: string };
   contactCity: { _text: string };
   contactCountry: { _text: string };
   contactName: { _text: string };
   contactPostal: { _text: string };
   contactState: { _text: string };
-  contactTitle: { _text: string };
   contactUrl: { _text: string };
   countries: {
     country: {
