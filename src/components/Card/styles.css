@@ -1,0 +1,78 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  max-width: 25rem;
+
+  text-align: center;
+  background-color: #ffff;
+  box-shadow: 5px 5px 20px #0000003b;
+  cursor: pointer;
+}
+
+.card_image_container {
+  overflow: hidden;
+}
+
+.card_image_container img {
+  object-fit: cover;
+  width: 100%;
+  height: 12rem;
+  transition: 500ms ease;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.card_info {
+  position: relative;
+  padding: 1rem 2rem;
+  color: var(--secondary-color);
+  height: 100%;
+}
+
+.card_title {
+  margin-top: 0rem;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.card_data {
+  font-size: 0.9rem;
+}
+
+.card_money {
+  display: flex;
+  justify-content: space-between;
+
+  position: absolute;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1rem;
+}
+
+.card_money p {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.card_money p:first-of-type {
+  text-align: start;
+}
+.card_money p:last-of-type {
+  text-align: end;
+}
+
+.card_money .needFunds {
+  color: var(--primary-color);
+}
+
+.card_money .completeFunds {
+  color: green;
+}
+
+.card_money .goal {
+  color: #007c67;
+}

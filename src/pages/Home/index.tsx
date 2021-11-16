@@ -1,6 +1,7 @@
 import "./styles.css";
 import { useAPI } from "../../contexts/APIContext";
 import ButtonLink from "../../components/Buttons/ButtonLink";
+import Card from "../../components/Card";
 
 export default function Home() {
   const { projects } = useAPI();
@@ -15,9 +16,9 @@ export default function Home() {
           <ButtonLink to="/about">See how</ButtonLink>
         </div>
       </section>
-      <section>
+      <section className="cards_container">
         {projects.map((proj) => {
-          return <div className="card">{proj.title._text}</div>;
+          return <Card key={proj.id._text} project={proj} />;
         })}
       </section>
     </main>
