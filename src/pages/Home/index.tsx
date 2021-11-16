@@ -12,8 +12,7 @@ export default function Home() {
         <Hero
           title="Help us build a culture of helpers"
           paragraph="We're doing something about it"
-          link="/about"
-          linkText="See how"
+          link={{ url: "/about", text: "See how" }}
           image="https://source.unsplash.com/random"
         />
       </section>

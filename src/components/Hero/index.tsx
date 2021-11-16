@@ -5,8 +5,7 @@ import "./styles.css";
 interface HeroProps {
   title: string;
   paragraph: string;
-  link: string;
-  linkText: string;
+  link: { url: string; otherLocation?: boolean; text: string };
   image: string;
   style?: CSSProperties;
   className?: string;
@@ -16,7 +15,6 @@ export default function Hero({
   title,
   paragraph,
   link,
-  linkText,
   image,
   style,
   className,
@@ -30,7 +28,9 @@ export default function Hero({
         <h1>{title}</h1>
         <p>{paragraph}</p>
 
-        <ButtonLink to={link}>{linkText}</ButtonLink>
+        <ButtonLink otherLocation={link.otherLocation} to={link.url}>
+          {link.text}
+        </ButtonLink>
       </div>
     </div>
   );
