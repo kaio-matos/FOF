@@ -24,7 +24,33 @@ export type projectType = {
   goal: { _text: string };
   id: { _text: string };
   image: {
-    imagelink: [{ url: { _text: string }; _attributes: { size: string } }];
+    imagelink: [
+      {
+        url: { text: string };
+        _attributes: { size: "small" };
+      },
+      {
+        url: { _text: string };
+        _attributes: { size: "thumbnail" };
+      },
+      {
+        url: { _text: string };
+        _attributes: { size: "medium" };
+      },
+      {
+        url: { _text: string };
+        _attributes: { size: "large" };
+      },
+      {
+        url: { _text: string };
+        _attributes: { size: "extraLarge" };
+      },
+      {
+        url: { _text: string };
+        _attributes: { size: "original" };
+      }
+    ];
+
     title: { _text: string };
     _attributes: { id: string };
   };

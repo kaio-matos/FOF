@@ -26,6 +26,20 @@ class GlobalGiving {
 
     return object.projects.project;
   }
+
+  async getProject(id: number) {
+    const raw = await fetch(`${this.url}/projects/${id}?api_key=${this.key}`);
+    const text = await raw.text();
+    const data = convert.xml2json(text, { compact: true, spaces: 4 });
+    const object = JSON.parse(data) as {
+      project: projectType;
+      _declaration: {
+        _attributes: { version: string; encoding: string; standalone: string };
+      };
+    };
+
+    return object.project;
+  }
 }
 
 const GlobalGivingAPI = new GlobalGiving(process.env.REACT_APP_APIKEY + "");

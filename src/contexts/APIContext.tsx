@@ -11,6 +11,7 @@ import { projectType } from "../api/types";
 type APIContextData = {
   projects: projectType[];
   getAllProjects: () => Promise<void>;
+  getProject: (id: number) => Promise<projectType>;
 };
 
 type APIContextProviderProps = {
@@ -28,17 +29,20 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
         localStorage.getItem("projects") + ""
       );
 
-      if (!pjs || pjs.length) setProjects(pjs);
-      else {
-        await getAllProjects();
-        localStorage.setItem("projects", JSON.stringify(projects));
-      }
+      if (pjs !== null && pjs.length) setProjects(pjs);
+      else await getAllProjects();
     })();
   }, []);
 
   async function getAllProjects() {
     const projs = await GlobalGivingAPI.getAllProjects();
+    localStorage.setItem("projects", JSON.stringify(projs));
     setProjects(projs);
+  }
+
+  async function getProject(id: number) {
+    const proj = await GlobalGivingAPI.getProject(id);
+    return proj;
   }
 
   return (
@@ -46,6 +50,7 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
       value={{
         projects,
         getAllProjects,
+        getProject,
       }}
     >
       {children}
