@@ -1,3 +1,3 @@
-# Fundation of Fundations - FOF
+# Foundation of Foundations - FOF
 
 🚧 Em construção 🚧
