@@ -1,0 +1,32 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  color: var(--neutral-color);
+}
+
+.hero div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1rem;
+  text-align: center;
+}
+
+.hero div h1 {
+  font-size: 3.7rem;
+}
+.hero div p {
+  font-size: 2.2rem;
+}
+
+.hero div a {
+  margin-top: 1rem;
+  font-size: 1.3rem;
+}
