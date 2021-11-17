@@ -4,6 +4,7 @@ import "./App.css";
 import Header from "./components/Header";
 import { APIContextProvider } from "./contexts/APIContext";
 import Home from "./pages/Home";
+import Project from "./pages/Project";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
+          <Route path="projects/:id" element={<Project />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </Router>
