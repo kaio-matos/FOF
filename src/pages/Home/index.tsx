@@ -3,9 +3,18 @@ import { useAPI } from "../../contexts/APIContext";
 import Card from "../../components/Card";
 import Hero from "../../components/Hero";
 import Loading from "../../components/Loading";
+import { useEffect, useRef } from "react";
+import useIsShowingElement from "../../hooks/useIsShowingElement";
 
 export default function Home() {
-  const { projects, loading } = useAPI();
+  const { projects, loading, lazyLoadProjects } = useAPI();
+  const lazyLoadDetector = useRef<HTMLDivElement>(null);
+  const isVisible = useIsShowingElement(lazyLoadDetector);
+
+  useEffect(() => {
+    lazyLoadProjects();
+    console.log("oi");
+  }, [isVisible]);
 
   return (
     <main>
@@ -24,6 +33,7 @@ export default function Home() {
         })}
       </section>
 
+      <div ref={lazyLoadDetector}></div>
       <div className="loading_container">
         <Loading size="5rem" state={loading} />
       </div>

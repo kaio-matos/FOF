@@ -4,6 +4,7 @@ import { projectType } from "./types";
 class GlobalGiving {
   key = "";
   url = "https://api.globalgiving.org/api/public/projectservice";
+  nextProjectId = "";
 
   constructor(key: string) {
     this.key = key;
@@ -24,6 +25,9 @@ class GlobalGiving {
       };
     };
 
+    this.nextProjectId = object.projects.nextProjectId._text;
+    console.log(object);
+
     return object.projects.project;
   }
 
@@ -39,6 +43,28 @@ class GlobalGiving {
     };
 
     return object.project;
+  }
+
+  async getNextProjects() {
+    const raw = await fetch(
+      `${this.url}/all/projects?api_key=${this.key}&nextProjectId=${this.nextProjectId}`
+    );
+    const text = await raw.text();
+    const data = convert.xml2json(text, { compact: true, spaces: 4 });
+    const object = JSON.parse(data) as {
+      projects: {
+        hasNext: { _text: string };
+        nextProjectId: { _text: string };
+        project: projectType[];
+      };
+      _declaration: {
+        _attributes: { version: string; encoding: string; standalone: string };
+      };
+    };
+
+    this.nextProjectId = object.projects.nextProjectId._text;
+
+    return object.projects.project;
   }
 }
 

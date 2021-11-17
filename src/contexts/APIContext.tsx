@@ -12,6 +12,7 @@ type APIContextData = {
   projects: projectType[];
   getAllProjects: () => Promise<void>;
   getProject: (id: number) => Promise<projectType>;
+  lazyLoadProjects: () => Promise<void>;
   loading: boolean;
 };
 
@@ -31,8 +32,10 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
         localStorage.getItem("projects") + ""
       );
 
-      if (pjs !== null && pjs.length) setProjects(pjs);
-      else await getAllProjects();
+      if (pjs !== null && pjs.length) {
+        GlobalGivingAPI.nextProjectId = String(pjs.length);
+        setProjects(pjs);
+      } else await getAllProjects();
     })();
   }, []);
 
@@ -51,12 +54,22 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
     return proj;
   }
 
+  async function lazyLoadProjects() {
+    setLoading(true);
+    const projs = await GlobalGivingAPI.getNextProjects();
+    localStorage.setItem("projects", JSON.stringify(projs));
+    setLoading(false);
+    console.log(projects.length, projs.length);
+    setProjects([...projects, ...projs]);
+  }
+
   return (
     <APIContext.Provider
       value={{
         projects,
         getAllProjects,
         getProject,
+        lazyLoadProjects,
         loading,
       }}
     >
