@@ -28,7 +28,7 @@ export default function Card({ project }: { project: projectType }) {
           <span className="title">{project.themeName._text}</span>
         </div>
         <div className="card_data">
-          <p>{project.summary._text}</p>
+          <p>{project.summary._text.slice(0, 150) + "..."}</p>
 
           <div className="card_money">
             <p
