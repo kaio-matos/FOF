@@ -17,14 +17,16 @@ export default function Home() {
           image="https://source.unsplash.com/random"
         />
       </section>
-      <div className="loading_container">
-        <Loading size="5rem" state={loading} />
-      </div>
+
       <section className="cards_container">
         {projects.map((proj) => {
           return <Card key={proj.id._text} project={proj} />;
         })}
       </section>
+
+      <div className="loading_container">
+        <Loading size="5rem" state={loading} />
+      </div>
     </main>
   );
 }
