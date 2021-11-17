@@ -39,7 +39,9 @@ export default function Project() {
             />
           </section>
           <div
-            className={`loading_container ${loading ? "show_container" : ""}`}
+            className={`loading_container_modal ${
+              loading ? "show_container" : ""
+            }`}
           >
             <Loading size="5rem" state={loading} />
           </div>
