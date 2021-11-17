@@ -59,7 +59,6 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
     const projs = await GlobalGivingAPI.getNextProjects();
     localStorage.setItem("projects", JSON.stringify(projs));
     setLoading(false);
-    console.log(projects.length, projs.length);
     setProjects([...projects, ...projs]);
   }
 

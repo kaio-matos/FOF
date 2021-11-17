@@ -13,7 +13,6 @@ export default function Home() {
 
   useEffect(() => {
     lazyLoadProjects();
-    console.log("oi");
   }, [isVisible]);
 
   return (

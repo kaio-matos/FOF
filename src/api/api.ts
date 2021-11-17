@@ -26,7 +26,6 @@ class GlobalGiving {
     };
 
     this.nextProjectId = object.projects.nextProjectId._text;
-    console.log(object);
 
     return object.projects.project;
   }
@@ -61,6 +60,8 @@ class GlobalGiving {
         _attributes: { version: string; encoding: string; standalone: string };
       };
     };
+
+    console.log(object);
 
     this.nextProjectId = object.projects.nextProjectId._text;
 
