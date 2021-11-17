@@ -2,9 +2,10 @@ import "./styles.css";
 import { useAPI } from "../../contexts/APIContext";
 import Card from "../../components/Card";
 import Hero from "../../components/Hero";
+import Loading from "../../components/Loading";
 
 export default function Home() {
-  const { projects } = useAPI();
+  const { projects, loading } = useAPI();
 
   return (
     <main>
@@ -16,6 +17,9 @@ export default function Home() {
           image="https://source.unsplash.com/random"
         />
       </section>
+      <div className="loading_container">
+        <Loading size="5rem" state={loading} />
+      </div>
       <section className="cards_container">
         {projects.map((proj) => {
           return <Card key={proj.id._text} project={proj} />;

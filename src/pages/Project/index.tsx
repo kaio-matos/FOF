@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { projectType } from "../../api/types";
 import Hero from "../../components/Hero";
+import Loading from "../../components/Loading";
 import { useAPI } from "../../contexts/APIContext";
 import "./styles.css";
 
 export default function Project() {
   const { id } = useParams();
-  const { getProject } = useAPI();
+  const { getProject, loading } = useAPI();
   const [project, setProject] = useState<projectType>();
 
   const completeGoal = Number(project?.remaining._text) === 0;
@@ -15,7 +16,6 @@ export default function Project() {
   useEffect(() => {
     (async () => {
       const pj = await getProject(Number(id));
-      console.log(pj);
       setProject(pj);
     })();
   }, []);
@@ -26,6 +26,7 @@ export default function Project() {
         <>
           <section>
             <Hero
+              style={{ padding: "0 3rem" }}
               className="hero_fundation"
               title={project.title._text}
               paragraph={project.country._text}
@@ -37,6 +38,11 @@ export default function Project() {
               image={project.image.imagelink[5].url._text}
             />
           </section>
+          <div
+            className={`loading_container ${loading ? "show_container" : ""}`}
+          >
+            <Loading size="5rem" state={loading} />
+          </div>
           <section className="information_container">
             <div className="information_title_text">
               <span className="title">Long term impact</span>

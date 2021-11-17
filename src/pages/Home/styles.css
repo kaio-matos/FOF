@@ -4,3 +4,11 @@
   padding: 5rem;
   gap: 2rem;
 }
+
+.loading_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem 0;
+}
