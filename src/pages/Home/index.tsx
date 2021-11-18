@@ -5,9 +5,10 @@ import Hero from "../../components/Hero";
 import Loading from "../../components/Loading";
 import { useEffect, useRef } from "react";
 import useIsShowingElement from "../../hooks/useIsShowingElement";
+import ModalMessage from "../../components/ModalMessage";
 
 export default function Home() {
-  const { projects, loading, lazyLoadProjects } = useAPI();
+  const { projects, loading, lazyLoadProjects, error } = useAPI();
   const lazyLoadDetector = useRef<HTMLDivElement>(null);
   const isVisible = useIsShowingElement(lazyLoadDetector);
 
@@ -36,6 +37,8 @@ export default function Home() {
       <div className="loading_container">
         <Loading size="5rem" state={loading} />
       </div>
+
+      <ModalMessage currentState={error} />
     </main>
   );
 }

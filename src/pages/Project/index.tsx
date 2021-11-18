@@ -3,12 +3,13 @@ import { useParams } from "react-router";
 import { projectType } from "../../api/types";
 import Hero from "../../components/Hero";
 import Loading from "../../components/Loading";
+import ModalMessage from "../../components/ModalMessage";
 import { useAPI } from "../../contexts/APIContext";
 import "./styles.css";
 
 export default function Project() {
   const { id } = useParams();
-  const { getProject, loading } = useAPI();
+  const { getProject, loading, error } = useAPI();
   const [project, setProject] = useState<projectType>();
 
   const completeGoal = Number(project?.remaining._text) === 0;
@@ -16,7 +17,9 @@ export default function Project() {
   useEffect(() => {
     (async () => {
       const pj = await getProject(Number(id));
-      setProject(pj);
+      if (pj) {
+        setProject(pj);
+      }
     })();
   }, []);
 
@@ -128,6 +131,7 @@ export default function Project() {
       ) : (
         ""
       )}
+      <ModalMessage currentState={error} />
     </main>
   );
 }

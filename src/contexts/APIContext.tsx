@@ -7,13 +7,15 @@ import {
 } from "react";
 import GlobalGivingAPI from "../api/api";
 import { projectType } from "../api/types";
+import { ErrorType, StandardError } from "../components/ModalMessage";
 
 type APIContextData = {
   projects: projectType[];
   getAllProjects: () => Promise<void>;
-  getProject: (id: number) => Promise<projectType>;
+  getProject: (id: number) => Promise<projectType | void>;
   lazyLoadProjects: () => Promise<void>;
   loading: boolean;
+  error: ErrorType;
 };
 
 type APIContextProviderProps = {
@@ -25,11 +27,12 @@ export const APIContext = createContext({} as APIContextData);
 export function APIContextProvider({ children }: APIContextProviderProps) {
   const [projects, setProjects] = useState<projectType[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<ErrorType>(StandardError);
 
   useEffect(() => {
     (async () => {
       const pjs: projectType[] = JSON.parse(
-        localStorage.getItem("projects") + ""
+        localStorage.getItem("projets") + ""
       );
 
       if (pjs !== null && pjs.length) {
@@ -40,26 +43,54 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
   }, []);
 
   async function getAllProjects() {
-    setLoading(true);
-    const projs = await GlobalGivingAPI.getAllProjects();
-    setLoading(false);
-    localStorage.setItem("projects", JSON.stringify(projs));
-    setProjects(projs);
+    try {
+      setLoading(true);
+      const projs = await GlobalGivingAPI.getAllProjects();
+      setLoading(false);
+      localStorage.setItem("projects", JSON.stringify(projs));
+      setProjects(projs);
+    } catch (err) {
+      setError({
+        message: "Error: Something happened when loading projects",
+        type: "error",
+      });
+      setLoading(false);
+      console.log(err);
+    }
   }
 
   async function getProject(id: number) {
-    setLoading(true);
-    const proj = await GlobalGivingAPI.getProject(id);
-    setLoading(false);
-    return proj;
+    try {
+      setLoading(true);
+      const proj = await GlobalGivingAPI.getProject(id);
+      if (!proj) {
+        throw new Error("Error: Project not found");
+      }
+      setLoading(false);
+      return proj;
+    } catch (err) {
+      setError({ message: "Error: Project not found", type: "error" });
+      setLoading(false);
+      console.log(err);
+      return;
+    }
   }
 
   async function lazyLoadProjects() {
-    setLoading(true);
-    const projs = await GlobalGivingAPI.getNextProjects();
-    localStorage.setItem("projects", JSON.stringify(projs));
-    setLoading(false);
-    setProjects([...projects, ...projs]);
+    try {
+      setLoading(true);
+      const projs = await GlobalGivingAPI.getNextProjects();
+      localStorage.setItem("projects", JSON.stringify(projs));
+      setLoading(false);
+      setProjects([...projects, ...projs]);
+    } catch (err) {
+      setError({
+        message: "Error: Something happened when loading new projects",
+        type: "error",
+      });
+      setLoading(false);
+      console.log(err);
+    }
   }
 
   return (
@@ -70,6 +101,7 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
         getProject,
         lazyLoadProjects,
         loading,
+        error,
       }}
     >
       {children}

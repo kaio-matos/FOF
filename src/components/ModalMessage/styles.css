@@ -1,0 +1,28 @@
+.modal {
+  position: fixed;
+  padding: 1rem;
+  bottom: 10%;
+
+  transition: 1s;
+  max-width: 17rem;
+  border-radius: 1rem;
+  color: var(--neutral-color);
+}
+
+.modal.on {
+  opacity: 1;
+  left: 5%;
+}
+
+.modal.off {
+  opacity: 0;
+  left: -30%;
+}
+
+.modal.error {
+  background-color: var(--primary-color);
+}
+
+.modal.success {
+  background-color: rgb(137, 223, 56);
+}

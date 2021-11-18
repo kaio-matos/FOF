@@ -61,8 +61,6 @@ class GlobalGiving {
       };
     };
 
-    console.log(object);
-
     this.nextProjectId = object.projects.nextProjectId._text;
 
     return object.projects.project;
