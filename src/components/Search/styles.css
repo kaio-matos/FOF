@@ -1,0 +1,46 @@
+.search_container {
+  display: flex;
+  position: relative;
+}
+
+.search_input_container {
+  display: flex;
+  position: absolute;
+  right: 100%;
+
+  padding: 0.5rem;
+  height: 100%;
+
+  background-color: var(--neutral-color);
+  transform-origin: right;
+  transition: 500ms;
+}
+
+.search_input_container .exit {
+  cursor: pointer;
+  color: black;
+}
+
+.search_input_container.off {
+  pointer-events: none;
+  transform: scaleX(0);
+  z-index: 1;
+}
+
+.search_input_container.off > * {
+  transition: 150ms;
+  opacity: 0;
+}
+
+.search_input_container.on {
+  z-index: 1;
+  transform: scaleX(1);
+}
+
+.search_input_container input {
+  width: 15rem;
+  outline: none;
+  font-size: 1rem;
+  border-radius: 0.2rem 0 0 0.2rem;
+  border: none;
+}
