@@ -16,7 +16,7 @@ export default function Card({ project }: { project: projectType }) {
         <img
           src={
             project.organization
-              ? project.organization.logoUrl._text
+              ? project.organization?.logoUrl?._text
               : project.imageLink._text
           }
           alt={project.title._text}

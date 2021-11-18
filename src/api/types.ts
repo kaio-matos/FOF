@@ -87,7 +87,7 @@ export type projectType = {
     ein: { _text: string };
     id: { _text: string };
     iso3166CountryCode: { _text: string };
-    logoUrl: { _text: string };
+    logoUrl?: { _text: string };
     mission: { _text: string };
     name: { _text: string };
     postal: { _text: string };
