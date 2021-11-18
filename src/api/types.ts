@@ -136,7 +136,7 @@ export type searchProjectsResponseType = {
       summary: { _text: string };
     };
     response: {
-      projects: { project: projectType[] };
+      projects: { project: projectType[] | projectType };
       _attributes: { numberFound: string; start: string };
     };
   };

@@ -2,6 +2,7 @@ import convert from "xml-js";
 import {
   getProjectResponseType,
   getProjectsResponseType,
+  projectType,
   searchProjectsResponseType,
 } from "./types";
 
@@ -59,10 +60,16 @@ class GlobalGiving {
     const data = convert.xml2json(text, { compact: true, spaces: 4 });
 
     const object = JSON.parse(data) as searchProjectsResponseType;
+
     if (Number(object.search.response._attributes.numberFound) === 0) {
       return [];
     }
-    return object.search.response.projects.project;
+
+    if (Array.isArray(object.search.response.projects.project)) {
+      return object.search.response.projects.project;
+    }
+
+    return [object.search.response.projects.project];
   }
 }
 
