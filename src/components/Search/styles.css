@@ -44,3 +44,40 @@
   border-radius: 0.2rem 0 0 0.2rem;
   border: none;
 }
+
+.search_foundations {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding-top: 5rem;
+  margin-top: 0.5rem;
+
+  width: 100%;
+
+  background-color: white;
+  border-radius: 2rem 0 0 0;
+
+  height: 100vh;
+  overflow: scroll;
+  transition: 500ms;
+}
+
+.search_foundations.hide {
+  pointer-events: none;
+  opacity: 0;
+  transition: 500ms;
+  top: 100%;
+}
+
+.search_foundations.show {
+  opacity: 1;
+  transition: 500ms;
+  top: 0;
+}
+
+.search_cards_container {
+  display: grid;
+  grid-template: auto / repeat(4, 1fr);
+  padding: 5rem;
+  gap: 2rem;
+}
