@@ -12,6 +12,11 @@
   width: 100%;
 }
 
+.header_logo img {
+  width: 100%;
+  max-width: 20rem;
+}
+
 .header_menu {
   width: 100%;
   font-size: 1rem;

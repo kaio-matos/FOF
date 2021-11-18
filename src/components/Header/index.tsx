@@ -2,12 +2,15 @@ import { BiSearch } from "react-icons/bi";
 import "./styles.css";
 import Button from "../Buttons/Button";
 import CustomLink from "../CustomLink";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
     <header className="header">
       <div className="header_logo">
-        <h1>Logo</h1>
+        <Link to="/">
+          <img src="/icons/extended_logo.svg" alt="" />
+        </Link>
       </div>
       <nav className="header_menu text">
         <ul>
