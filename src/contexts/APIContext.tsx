@@ -11,9 +11,12 @@ import { ErrorType, StandardError } from "../components/ModalMessage";
 
 type APIContextData = {
   projects: projectType[];
+  searchedProjects: projectType[];
   getAllProjects: () => Promise<void>;
   getProject: (id: number) => Promise<projectType | void>;
   lazyLoadProjects: () => Promise<void>;
+  searchProjects: (search: string) => Promise<void>;
+  clearSearchedProjects: () => Promise<void>;
   loading: boolean;
   error: ErrorType;
 };
@@ -26,6 +29,7 @@ export const APIContext = createContext({} as APIContextData);
 
 export function APIContextProvider({ children }: APIContextProviderProps) {
   const [projects, setProjects] = useState<projectType[]>([]);
+  const [searchedProjects, setSearchedProjects] = useState<projectType[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<ErrorType>(StandardError);
 
@@ -93,6 +97,26 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
     }
   }
 
+  async function searchProjects(search: string) {
+    try {
+      setLoading(true);
+      const projs = await GlobalGivingAPI.searchProjects(search);
+      setLoading(false);
+      setSearchedProjects(projs);
+    } catch (err) {
+      setError({
+        message: "Error: Something happened when loading new projects",
+        type: "error",
+      });
+      setLoading(false);
+      console.log(err);
+    }
+  }
+
+  async function clearSearchedProjects() {
+    setSearchedProjects([]);
+  }
+
   return (
     <APIContext.Provider
       value={{
@@ -100,6 +124,9 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
         getAllProjects,
         getProject,
         lazyLoadProjects,
+        searchProjects,
+        clearSearchedProjects,
+        searchedProjects,
         loading,
         error,
       }}
