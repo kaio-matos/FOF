@@ -1,9 +1,13 @@
 import convert from "xml-js";
-import { projectType } from "./types";
+import {
+  getProjectResponseType,
+  getProjectsResponseType,
+  searchProjectsResponseType,
+} from "./types";
 
 class GlobalGiving {
   key = "";
-  url = "https://api.globalgiving.org/api/public/projectservice";
+  url = "https://api.globalgiving.org/api/public";
   nextProjectId = "";
 
   constructor(key: string) {
@@ -11,19 +15,12 @@ class GlobalGiving {
   }
 
   async getAllProjects() {
-    const raw = await fetch(`${this.url}/all/projects?api_key=${this.key}`);
+    const raw = await fetch(
+      `${this.url}/projectservice/all/projects?api_key=${this.key}`
+    );
     const text = await raw.text();
     const data = convert.xml2json(text, { compact: true, spaces: 4 });
-    const object = JSON.parse(data) as {
-      projects: {
-        hasNext: { _text: string };
-        nextProjectId: { _text: string };
-        project: projectType[];
-      };
-      _declaration: {
-        _attributes: { version: string; encoding: string; standalone: string };
-      };
-    };
+    const object = JSON.parse(data) as getProjectsResponseType;
 
     this.nextProjectId = object.projects.nextProjectId._text;
 
@@ -31,39 +28,41 @@ class GlobalGiving {
   }
 
   async getProject(id: number) {
-    const raw = await fetch(`${this.url}/projects/${id}?api_key=${this.key}`);
+    const raw = await fetch(
+      `${this.url}/projectservice/projects/${id}?api_key=${this.key}`
+    );
     const text = await raw.text();
     const data = convert.xml2json(text, { compact: true, spaces: 4 });
-    const object = JSON.parse(data) as {
-      project: projectType;
-      _declaration: {
-        _attributes: { version: string; encoding: string; standalone: string };
-      };
-    };
+    const object = JSON.parse(data) as getProjectResponseType;
 
     return object.project;
   }
 
   async getNextProjects() {
     const raw = await fetch(
-      `${this.url}/all/projects?api_key=${this.key}&nextProjectId=${this.nextProjectId}`
+      `${this.url}/projectservice/all/projects?api_key=${this.key}&nextProjectId=${this.nextProjectId}`
     );
     const text = await raw.text();
     const data = convert.xml2json(text, { compact: true, spaces: 4 });
-    const object = JSON.parse(data) as {
-      projects: {
-        hasNext: { _text: string };
-        nextProjectId: { _text: string };
-        project: projectType[];
-      };
-      _declaration: {
-        _attributes: { version: string; encoding: string; standalone: string };
-      };
-    };
+    const object = JSON.parse(data) as getProjectsResponseType;
 
     this.nextProjectId = object.projects.nextProjectId._text;
 
     return object.projects.project;
+  }
+
+  async searchProjects(search: string) {
+    const raw = await fetch(
+      `${this.url}/services/search/projects?api_key=${this.key}&q=${search}`
+    );
+    const text = await raw.text();
+    const data = convert.xml2json(text, { compact: true, spaces: 4 });
+
+    const object = JSON.parse(data) as searchProjectsResponseType;
+    if (Number(object.search.response._attributes.numberFound) === 0) {
+      return [];
+    }
+    return object.search.response.projects.project;
   }
 }
 

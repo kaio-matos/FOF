@@ -68,7 +68,7 @@ export type projectType = {
   status: { _text: string };
   summary: { _text: string };
   themeName: { _text: string };
-  themes: { theme: { id: { _text: string }; name: { _text: string } } };
+  themes: { theme: { id: { _text: string }; name: { _text: string } }[] };
   title: { _text: string };
   type: { _text: string };
 
@@ -100,5 +100,44 @@ export type projectType = {
     };
     totalProjects: { _text: string };
     url: { _text: string };
+  };
+};
+
+/**
+ *
+ *
+ *
+ */
+/** ------------- Response Types ------------- */
+
+export type getProjectsResponseType = {
+  projects: {
+    hasNext: { _text: string };
+    nextProjectId: { _text: string };
+    project: projectType[];
+  };
+  _declaration: {
+    _attributes: { version: string; encoding: string; standalone: string };
+  };
+};
+
+export type getProjectResponseType = {
+  project: projectType;
+  _declaration: {
+    _attributes: { version: string; encoding: string; standalone: string };
+  };
+};
+
+export type searchProjectsResponseType = {
+  search: {
+    request: {
+      q: { _text: string };
+      start: { _text: string };
+      summary: { _text: string };
+    };
+    response: {
+      projects: { project: projectType[] };
+      _attributes: { numberFound: string; start: string };
+    };
   };
 };
