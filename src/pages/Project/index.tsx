@@ -9,7 +9,7 @@ import "./styles.css";
 
 export default function Project() {
   const { id } = useParams();
-  const { getProject, loading, error } = useAPI();
+  const { getProject, loading, message } = useAPI();
   const [project, setProject] = useState<projectType>();
 
   const completeGoal = Number(project?.remaining._text) === 0;
@@ -131,7 +131,7 @@ export default function Project() {
       ) : (
         ""
       )}
-      <ModalMessage currentState={error} />
+      <ModalMessage currentState={message} />
     </main>
   );
 }

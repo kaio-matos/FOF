@@ -8,7 +8,7 @@ import useIsShowingElement from "../../hooks/useIsShowingElement";
 import ModalMessage from "../../components/ModalMessage";
 
 export default function Home() {
-  const { projects, loading, lazyLoadProjects, error } = useAPI();
+  const { projects, loading, lazyLoadProjects, message } = useAPI();
   const lazyLoadDetector = useRef<HTMLDivElement>(null);
   const isVisible = useIsShowingElement(lazyLoadDetector);
 
@@ -38,7 +38,7 @@ export default function Home() {
         <Loading size="5rem" state={loading} />
       </div>
 
-      <ModalMessage currentState={error} />
+      <ModalMessage currentState={message} />
     </main>
   );
 }

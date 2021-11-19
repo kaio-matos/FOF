@@ -1,27 +1,27 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles.css";
 
-export type ErrorType = {
+export type MessageType = {
   message: string;
   time?: number;
   type: "error" | "success";
 };
 
-export const StandardError: ErrorType = {
+export const StandardMessage: MessageType = {
   message: "",
   type: "error",
 };
 
-export type ErrorProps = {
-  currentState: ErrorType;
+export type ModalMessageProps = {
+  currentState: MessageType;
 };
 
-export default function ModalMessage({ currentState }: ErrorProps) {
+export default function ModalMessage({ currentState }: ModalMessageProps) {
   const time = 5000;
   const [state, setState] = useState(false);
 
   useEffect(() => {
-    if (currentState.message !== StandardError.message) {
+    if (currentState.message !== StandardMessage.message) {
       setState(true);
       setTimeout(
         () => {

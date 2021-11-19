@@ -7,7 +7,7 @@ import {
 } from "react";
 import GlobalGivingAPI from "../api/api";
 import { projectType } from "../api/types";
-import { ErrorType, StandardError } from "../components/ModalMessage";
+import { MessageType, StandardMessage } from "../components/ModalMessage";
 
 type APIContextData = {
   projects: projectType[];
@@ -18,7 +18,7 @@ type APIContextData = {
   searchProjects: (search: string) => Promise<void>;
   clearSearchedProjects: () => Promise<void>;
   loading: boolean;
-  error: ErrorType;
+  message: MessageType;
 };
 
 type APIContextProviderProps = {
@@ -31,7 +31,7 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
   const [projects, setProjects] = useState<projectType[]>([]);
   const [searchedProjects, setSearchedProjects] = useState<projectType[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<ErrorType>(StandardError);
+  const [message, setMessage] = useState<MessageType>(StandardMessage);
 
   useEffect(() => {
     (async () => {
@@ -54,7 +54,7 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
       localStorage.setItem("projects", JSON.stringify(projs));
       setProjects(projs);
     } catch (err) {
-      setError({
+      setMessage({
         message: "Error: Something happened when loading projects",
         type: "error",
       });
@@ -73,7 +73,7 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
       setLoading(false);
       return proj;
     } catch (err) {
-      setError({ message: "Error: Project not found", type: "error" });
+      setMessage({ message: "Error: Project not found", type: "error" });
       setLoading(false);
       console.log(err);
       return;
@@ -88,7 +88,7 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
       setLoading(false);
       setProjects([...projects, ...projs]);
     } catch (err) {
-      setError({
+      setMessage({
         message: "Error: Something happened when loading new projects",
         type: "error",
       });
@@ -103,8 +103,14 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
       const projs = await GlobalGivingAPI.searchProjects(search);
       setLoading(false);
       setSearchedProjects(projs);
+      if (projs.length === 0) {
+        setMessage({
+          message: "Any foundation was found",
+          type: "success",
+        });
+      }
     } catch (err) {
-      setError({
+      setMessage({
         message: "Error: Something happened when loading new projects",
         type: "error",
       });
@@ -128,7 +134,7 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
         clearSearchedProjects,
         searchedProjects,
         loading,
-        error,
+        message,
       }}
     >
       {children}
