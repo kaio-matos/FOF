@@ -36,7 +36,7 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
   useEffect(() => {
     (async () => {
       const pjs: projectType[] = JSON.parse(
-        localStorage.getItem("projets") + ""
+        localStorage.getItem("projects") + ""
       );
 
       if (pjs !== null && pjs.length) {

@@ -2,7 +2,6 @@ import convert from "xml-js";
 import {
   getProjectResponseType,
   getProjectsResponseType,
-  projectType,
   searchProjectsResponseType,
 } from "./types";
 

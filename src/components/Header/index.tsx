@@ -1,6 +1,4 @@
-import { BiSearch } from "react-icons/bi";
 import "./styles.css";
-import Button from "../Buttons/Button";
 import CustomLink from "../CustomLink";
 import { Link } from "react-router-dom";
 import Search from "../Search";
