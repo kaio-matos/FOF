@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { projectType } from "../../api/types";
 import Hero from "../../components/Hero";
 import Loading from "../../components/Loading";
+import ModalLoading from "../../components/ModalLoading";
 import ModalMessage from "../../components/ModalMessage";
 import { useAPI } from "../../contexts/APIContext";
 import "./styles.css";
@@ -41,13 +42,8 @@ export default function Project() {
               image={project.image.imagelink[5].url._text}
             />
           </section>
-          <div
-            className={`loading_container_modal ${
-              loading ? "show_container" : ""
-            }`}
-          >
-            <Loading size="5rem" state={loading} />
-          </div>
+          <ModalLoading showWhen={loading} />
+
           <section className="information_container">
             <div className="information_title_text">
               <span className="title">Long term impact</span>

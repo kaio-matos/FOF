@@ -4,12 +4,14 @@ import { MdClose } from "react-icons/md";
 import { useAPI } from "../../contexts/APIContext";
 import Button from "../Buttons/Button";
 import Card from "../Card";
+import ModalLoading from "../ModalLoading";
 import "./styles.css";
 
 export default function Search() {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
-  const { searchProjects, clearSearchedProjects, searchedProjects } = useAPI();
+  const { searchProjects, clearSearchedProjects, searchedProjects, loading } =
+    useAPI();
 
   useEffect(() => {
     searchedProjects.length
@@ -75,6 +77,8 @@ export default function Search() {
           })}
         </section>
       </section>
+
+      <ModalLoading showWhen={loading && open} />
     </div>
   );
 }
