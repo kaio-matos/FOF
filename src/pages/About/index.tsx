@@ -1,4 +1,4 @@
-import "./index.css";
+import "./styles.css";
 import Hero from "../../components/Hero";
 
 export default function About() {
@@ -16,7 +16,8 @@ export default function About() {
           image="https://source.unsplash.com/random"
         />
       </section>
-      <section className="about">
+
+      <section className="about content_container">
         <div className="about_container">
           <div>
             <h2>See what we are doing</h2>

@@ -27,17 +27,18 @@ export default function Home() {
         />
       </section>
 
-      <section className="cards_container">
-        {projects.map((proj, index) => {
-          return <Card key={proj.id._text + index} project={proj} />;
-        })}
-      </section>
+      <div className="content_container">
+        <section className="cards_container">
+          {projects.map((proj, index) => {
+            return <Card key={proj.id._text + index} project={proj} />;
+          })}
+        </section>
 
-      <div ref={lazyLoadDetector}></div>
-      <div className="loading_container">
-        <Loading size="5rem" state={loading} />
+        <div ref={lazyLoadDetector}></div>
+        <div className="loading_container">
+          <Loading size="5rem" state={loading} />
+        </div>
       </div>
-
       <ModalMessage currentState={message} />
     </main>
   );

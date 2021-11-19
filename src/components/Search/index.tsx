@@ -76,7 +76,7 @@ export default function Search() {
           searchedProjects.length ? "show" : "hide"
         }`}
       >
-        <section className="search_cards_container">
+        <section className="search_cards_container content_container">
           {searchedProjects.map((proj, index) => {
             return <Card key={proj.id._text + index} project={proj} />;
           })}

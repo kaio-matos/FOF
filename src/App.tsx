@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import "./App.css";
 import Header from "./components/Header";
 import { APIContextProvider } from "./contexts/APIContext";
 import About from "./pages/About";
