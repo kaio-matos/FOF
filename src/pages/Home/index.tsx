@@ -28,8 +28,8 @@ export default function Home() {
       </section>
 
       <section className="cards_container">
-        {projects.map((proj) => {
-          return <Card key={proj.id._text} project={proj} />;
+        {projects.map((proj, index) => {
+          return <Card key={proj.id._text + index} project={proj} />;
         })}
       </section>
 

@@ -20,10 +20,10 @@ export default function Search() {
   }, [searchedProjects]);
 
   function activeSearch() {
-    if (open) {
+    if (open && text !== "") {
       searchProjects(text);
     } else {
-      setOpen(!open);
+      disableSearch();
     }
   }
 
@@ -38,6 +38,11 @@ export default function Search() {
       <div className={`search_container`}>
         <div className={`search_input_container ${open ? "on" : "off"}`}>
           <input
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                activeSearch();
+              }
+            }}
             onChange={({ currentTarget }) => {
               setText(currentTarget.value);
             }}
@@ -72,8 +77,8 @@ export default function Search() {
         }`}
       >
         <section className="search_cards_container">
-          {searchedProjects.map((proj) => {
-            return <Card key={proj.id._text} project={proj} />;
+          {searchedProjects.map((proj, index) => {
+            return <Card key={proj.id._text + index} project={proj} />;
           })}
         </section>
       </section>
