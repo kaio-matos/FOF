@@ -1,0 +1,25 @@
+.about_container {
+  display: flex;
+
+  gap: 2rem;
+  height: 17rem;
+  margin-bottom: 1.5rem;
+}
+
+.about_container > div {
+  width: 50%;
+}
+
+.about_container h2 {
+  margin-bottom: 1rem;
+}
+
+.about_container img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.about {
+  padding: 3rem 5rem;
+}
