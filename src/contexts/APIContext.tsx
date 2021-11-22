@@ -81,10 +81,12 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
   }
 
   async function lazyLoadProjects() {
+    if (projects.length === 0) return;
+
     try {
       setLoading(true);
       const projs = await GlobalGivingAPI.getNextProjects();
-      localStorage.setItem("projects", JSON.stringify(projs));
+      localStorage.setItem("projects", JSON.stringify([...projects, ...projs]));
       setLoading(false);
       setProjects([...projects, ...projs]);
     } catch (err) {
