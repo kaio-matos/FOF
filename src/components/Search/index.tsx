@@ -5,6 +5,7 @@ import { useAPI } from "../../contexts/APIContext";
 import useIsShowingElement from "../../hooks/useIsShowingElement";
 import Button from "../Buttons/Button";
 import Card from "../Card";
+import CardContainer from "../CardContainer";
 import ModalLoading from "../ModalLoading";
 import "./styles.css";
 
@@ -13,8 +14,9 @@ export default function Search() {
   const [text, setText] = useState("");
   const { searchProjects, clearSearchedProjects, searchedProjects, loading } =
     useAPI();
-  const search = useRef<HTMLDivElement>(null);
-  const isVisible = useIsShowingElement(search);
+  const input = useRef<HTMLInputElement>(null);
+  const searchContainer = useRef<HTMLDivElement>(null);
+  const isVisible = useIsShowingElement(searchContainer);
 
   useEffect(() => {
     searchedProjects.length
@@ -26,26 +28,31 @@ export default function Search() {
     if (open && text !== "" && isVisible) {
       searchProjects(text);
     } else {
-      disableSearch();
+      toggleSearch();
     }
   }
 
-  function disableSearch() {
+  function toggleSearch() {
     setText("");
     setOpen(!open);
+    if (!open) {
+      input.current?.focus();
+    }
     clearSearchedProjects();
   }
 
   return (
-    <div ref={search}>
+    <div ref={searchContainer}>
       <div className={`search_container`}>
         <div className={`search_input_container ${open ? "on" : "off"}`}>
           <input
+            ref={input}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 activeSearch();
               }
             }}
+            autoFocus
             onChange={({ currentTarget }) => {
               setText(currentTarget.value);
             }}
@@ -54,9 +61,9 @@ export default function Search() {
           />
           <div
             onClick={() => {
-              disableSearch();
+              toggleSearch();
             }}
-            className="text exit"
+            className="exit"
           >
             <MdClose />
           </div>
@@ -79,11 +86,7 @@ export default function Search() {
           searchedProjects.length ? "show" : "hide"
         }`}
       >
-        <section className="search_cards_container content_container">
-          {searchedProjects.map((proj, index) => {
-            return <Card key={proj.id._text + index} project={proj} />;
-          })}
-        </section>
+        <CardContainer projects={searchedProjects} />
       </section>
 
       <ModalLoading showWhen={loading && open && isVisible} />

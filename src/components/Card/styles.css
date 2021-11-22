@@ -6,6 +6,7 @@
   background-color: #ffff;
   box-shadow: 5px 5px 20px #0000003b;
   cursor: pointer;
+  min-width: 14rem;
 }
 
 .card_image_container {

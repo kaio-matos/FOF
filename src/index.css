@@ -44,3 +44,19 @@ p,
   font-family: var(--primary-font);
   font-weight: 300;
 }
+
+@media screen and (max-width: 1280px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 1028px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 882px) {
+  html {
+    font-size: 10px;
+  }
+}

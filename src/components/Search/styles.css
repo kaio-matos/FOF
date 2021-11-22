@@ -5,6 +5,7 @@
 
 .search_input_container {
   display: flex;
+  align-items: center;
   position: absolute;
   right: 100%;
 
@@ -18,6 +19,7 @@
 }
 
 .search_input_container .exit {
+  display: flex;
   cursor: pointer;
   color: black;
 }
@@ -73,11 +75,4 @@
   opacity: 1;
   transition: 500ms;
   top: 0;
-}
-
-.search_cards_container {
-  display: grid;
-  grid-template: auto / repeat(4, 1fr);
-  padding: 5rem;
-  gap: 2rem;
 }

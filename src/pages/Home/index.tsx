@@ -6,6 +6,7 @@ import Loading from "../../components/Loading";
 import { useEffect, useRef } from "react";
 import useIsShowingElement from "../../hooks/useIsShowingElement";
 import ModalMessage from "../../components/ModalMessage";
+import CardContainer from "../../components/CardContainer";
 
 export default function Home() {
   const { projects, loading, lazyLoadProjects, message } = useAPI();
@@ -28,10 +29,8 @@ export default function Home() {
       </section>
 
       <div className="content_container">
-        <section className="cards_container">
-          {projects.map((proj, index) => {
-            return <Card key={proj.id._text + index} project={proj} />;
-          })}
+        <section>
+          <CardContainer projects={projects} />
         </section>
 
         <div ref={lazyLoadDetector}></div>

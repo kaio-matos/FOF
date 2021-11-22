@@ -23,3 +23,19 @@
 .about {
   padding: 3rem 5rem;
 }
+
+@media screen and (max-width: 575px) {
+  .about_container {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+
+  .about_container > div {
+    width: 100%;
+  }
+
+  .about_container:nth-child(2) > div:last-child {
+    order: -1;
+  }
+}
