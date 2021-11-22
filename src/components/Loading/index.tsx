@@ -11,9 +11,7 @@ export default function Loading({ state, size }: LoadingProps) {
 
   useEffect(() => {
     if (!state) {
-      setTimeout(() => {
-        setUnmount(true);
-      }, 1000);
+      setUnmount(true);
     } else {
       setUnmount(false);
     }

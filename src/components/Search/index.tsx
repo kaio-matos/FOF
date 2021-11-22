@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
 import { useAPI } from "../../contexts/APIContext";
+import useIsShowingElement from "../../hooks/useIsShowingElement";
 import Button from "../Buttons/Button";
 import Card from "../Card";
 import ModalLoading from "../ModalLoading";
@@ -12,6 +13,8 @@ export default function Search() {
   const [text, setText] = useState("");
   const { searchProjects, clearSearchedProjects, searchedProjects, loading } =
     useAPI();
+  const search = useRef<HTMLDivElement>(null);
+  const isVisible = useIsShowingElement(search);
 
   useEffect(() => {
     searchedProjects.length
@@ -20,7 +23,7 @@ export default function Search() {
   }, [searchedProjects]);
 
   function activeSearch() {
-    if (open && text !== "") {
+    if (open && text !== "" && isVisible) {
       searchProjects(text);
     } else {
       disableSearch();
@@ -34,7 +37,7 @@ export default function Search() {
   }
 
   return (
-    <div>
+    <div ref={search}>
       <div className={`search_container`}>
         <div className={`search_input_container ${open ? "on" : "off"}`}>
           <input
@@ -83,7 +86,7 @@ export default function Search() {
         </section>
       </section>
 
-      <ModalLoading showWhen={loading && open} />
+      <ModalLoading showWhen={loading && open && isVisible} />
     </div>
   );
 }
