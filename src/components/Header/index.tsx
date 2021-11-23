@@ -51,7 +51,7 @@ export default function Header() {
       <div className="header_logo">
         <Link to="/FOF/">
           <img
-            src="./FOF/icons/extended_logo.svg"
+            src="icons/extended_logo.svg"
             alt="Foundation of Foundations | FOF"
           />
         </Link>
