@@ -33,6 +33,7 @@
     },
     {
       "src": "/icons/android-icon-192x192.png",
+      "start_url": "/FOF/",
       "sizes": "192x192",
       "type": "image/png",
       "density": "4.0"
