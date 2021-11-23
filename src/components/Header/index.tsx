@@ -13,7 +13,7 @@ export default function Header() {
   const [width] = useWindowSize();
 
   useEffect(() => {
-    if (width <= 660) {
+    if (window.innerWidth <= 660) {
       setMobile(true);
     }
   }, [width]);
