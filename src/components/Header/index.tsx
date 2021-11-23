@@ -22,9 +22,9 @@ export default function Header() {
     return (
       <header className="header">
         <div className="header_logo">
-          <Link to="/">
+          <Link to="/FOF/">
             <img
-              src="/icons/extended_logo.svg"
+              src="icons/extended_logo.svg"
               alt="Foundation of Foundations | FOF"
             />
           </Link>
@@ -32,10 +32,10 @@ export default function Header() {
         <nav className="header_menu text">
           <ul>
             <li>
-              <CustomLink to="/">Home</CustomLink>
+              <CustomLink to="/FOF/">Home</CustomLink>
             </li>
             <li>
-              <CustomLink to="/about">About FOF</CustomLink>
+              <CustomLink to="/FOF/about">About FOF</CustomLink>
             </li>
           </ul>
         </nav>
@@ -49,9 +49,9 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header_logo">
-        <Link to="/">
+        <Link to="/FOF/">
           <img
-            src="/icons/extended_logo.svg"
+            src="./FOF/icons/extended_logo.svg"
             alt="Foundation of Foundations | FOF"
           />
         </Link>
@@ -68,10 +68,10 @@ export default function Header() {
           <nav className="header_menu text">
             <ul>
               <li>
-                <CustomLink to="/">Home</CustomLink>
+                <CustomLink to="/FOF/">Home</CustomLink>
               </li>
               <li>
-                <CustomLink to="/about">About FOF</CustomLink>
+                <CustomLink to="/FOF/about">About FOF</CustomLink>
               </li>
             </ul>
           </nav>

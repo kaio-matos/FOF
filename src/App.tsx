@@ -12,9 +12,11 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/about" element={<About />} />
-          <Route path="projects/:id" element={<Project />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/FOF/">
+            <Route path="about" element={<About />} />
+            <Route path="projects/:id" element={<Project />} />
+            <Route path="" element={<Home />} />
+          </Route>
         </Routes>
       </Router>
     </APIContextProvider>

@@ -1,6 +1,5 @@
 import "./styles.css";
 import { useAPI } from "../../contexts/APIContext";
-import Card from "../../components/Card";
 import Hero from "../../components/Hero";
 import Loading from "../../components/Loading";
 import { useEffect, useRef } from "react";
@@ -23,8 +22,8 @@ export default function Home() {
         <Hero
           title="Help us build a culture of helpers"
           paragraph="We're doing something about it"
-          link={{ url: "/about", text: "See how" }}
-          image="/bg-children.jpg"
+          link={{ url: "/FOF/about", text: "See how" }}
+          image="/FOF/bg-children.jpg"
         />
       </section>
 

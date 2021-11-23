@@ -8,7 +8,7 @@ export default function Card({ project }: { project: projectType }) {
   return (
     <div
       onClick={() => {
-        navigate(`/projects/${project.id._text}`);
+        navigate(`/FOF/projects/${project.id._text}`);
       }}
       className="card"
     >
