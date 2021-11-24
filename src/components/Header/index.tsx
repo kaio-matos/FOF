@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import useWindowSize from "../../hooks/useWindowSize";
 import Button from "../Buttons/Button";
+import FOF_extended from "../../assets/extended_logo.svg";
 
 export default function Header() {
   const [mobile, setMobile] = useState(false);
@@ -23,10 +24,7 @@ export default function Header() {
       <header className="header">
         <div className="header_logo">
           <Link to="/FOF/">
-            <img
-              src="icons/extended_logo.svg"
-              alt="Foundation of Foundations | FOF"
-            />
+            <img src={FOF_extended} alt="Foundation of Foundations | FOF" />
           </Link>
         </div>
         <nav className="header_menu text">
@@ -50,10 +48,7 @@ export default function Header() {
     <header className="header">
       <div className="header_logo">
         <Link to="/FOF/">
-          <img
-            src="icons/extended_logo.svg"
-            alt="Foundation of Foundations | FOF"
-          />
+          <img src={FOF_extended} alt="Foundation of Foundations | FOF" />
         </Link>
       </div>
       <Button

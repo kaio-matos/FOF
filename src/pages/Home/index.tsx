@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
 import useIsShowingElement from "../../hooks/useIsShowingElement";
 import ModalMessage from "../../components/ModalMessage";
 import CardContainer from "../../components/CardContainer";
+import backgroundImage from "../../assets/bg-children.jpg";
 
 export default function Home() {
   const { projects, loading, lazyLoadProjects, message } = useAPI();
@@ -23,7 +24,7 @@ export default function Home() {
           title="Help us build a culture of helpers"
           paragraph="We're doing something about it"
           link={{ url: "/FOF/about", text: "See how" }}
-          image="/FOF/bg-children.jpg"
+          image={backgroundImage}
         />
       </section>
 
