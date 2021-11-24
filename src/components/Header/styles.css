@@ -20,7 +20,7 @@
   top: 25px;
   right: 50%;
   opacity: 0;
-  transform: scale(0);
+  /* transform: scale(0); */
   transform-origin: top;
 
   transition: 500ms;
@@ -28,7 +28,7 @@
 
 .mobile_menu.open {
   opacity: 1;
-  transform: scale(1);
+  /* transform: scale(1); */
 }
 
 .mobile_menu .header_menu ul {
