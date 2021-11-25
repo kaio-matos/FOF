@@ -14,21 +14,27 @@ export default function Header() {
   const [width] = useWindowSize();
 
   useEffect(() => {
-    if (window.innerWidth <= 660) {
-      setMobile(true);
-    } else {
-      setMobile(false);
-    }
+    if (width <= 660) setMobile(true);
+    else setMobile(false);
   }, [width]);
 
-  if (!mobile) {
+  function toggleMobileMenu() {
+    setOpenMobileMenu(!openMobileMenu);
+  }
+
+  function HeaderLogo() {
     return (
-      <header className="header">
-        <div className="header_logo">
-          <Link to="/FOF/">
-            <img src={FOF_extended} alt="Foundation of Foundations | FOF" />
-          </Link>
-        </div>
+      <div className="header_logo">
+        <Link to="/FOF/">
+          <img src={FOF_extended} alt="Foundation of Foundations | FOF" />
+        </Link>
+      </div>
+    );
+  }
+
+  function HeaderButtons() {
+    return (
+      <>
         <nav className="header_menu text">
           <ul>
             <li>
@@ -42,39 +48,30 @@ export default function Header() {
         <div className="header_search">
           <Search />
         </div>
+      </>
+    );
+  }
+
+  if (!mobile) {
+    return (
+      <header className="header">
+        <HeaderLogo />
+        <HeaderButtons />
       </header>
     );
   }
 
   return (
     <header className="header">
-      <div className="header_logo">
-        <Link to="/FOF/">
-          <img src={FOF_extended} alt="Foundation of Foundations | FOF" />
-        </Link>
-      </div>
-      <Button
-        onClick={() => {
-          setOpenMobileMenu(!openMobileMenu);
-        }}
-      >
+      <HeaderLogo />
+
+      <Button onClick={toggleMobileMenu}>
         <AiOutlineMenu />
       </Button>
-      <div className="mobile_menu_container">
-        <div className={`mobile_menu ${openMobileMenu ? "open" : ""}`}>
-          <nav className="header_menu text">
-            <ul>
-              <li>
-                <CustomLink to="/FOF/">Home</CustomLink>
-              </li>
-              <li>
-                <CustomLink to="/FOF/about">About FOF</CustomLink>
-              </li>
-            </ul>
-          </nav>
-          <div className="header_search">
-            <Search />
-          </div>
+
+      <div className="mobile_header_menu_container">
+        <div className={`mobile_header_menu ${openMobileMenu ? "open" : ""}`}>
+          <HeaderButtons />
         </div>
       </div>
     </header>
