@@ -1,11 +1,11 @@
 .loading_on {
   opacity: 1;
-  transition: 500ms;
+  transition: 1000ms;
 }
 
 .loading_off {
   opacity: 0;
-  transition: 500ms;
+  transition: 1000ms;
 }
 
 .circle {
