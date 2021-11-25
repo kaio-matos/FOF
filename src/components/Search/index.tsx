@@ -12,14 +12,18 @@ import "./styles.css";
 export default function Search() {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
+
   const { searchProjects, clearSearchedProjects, searchedProjects, loading } =
     useAPI();
+
   const input = useRef<HTMLInputElement>(null);
   const searchContainer = useRef<HTMLDivElement>(null);
+
   const isVisible = useIsShowingElement(searchContainer);
 
   useEffect(() => {
-    searchedProjects.length
+    const isInSearch = searchedProjects.length ? true : false;
+    isInSearch
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "auto");
   }, [searchedProjects]);
@@ -35,10 +39,37 @@ export default function Search() {
   function toggleSearch() {
     setText("");
     setOpen(!open);
-    if (!open) {
-      input.current?.focus();
-    }
+    if (!open) input.current?.focus();
     clearSearchedProjects();
+  }
+
+  function CloseButton() {
+    return (
+      <div
+        onClick={() => {
+          toggleSearch();
+        }}
+        className="exit"
+      >
+        <MdClose />
+      </div>
+    );
+  }
+
+  function SearchButton() {
+    return (
+      <Button
+        style={{
+          borderRadius: open ? "0 0.2rem 0.2rem 0" : "0.2rem",
+          transition: "background-color 500ms, color 500ms, border-radius 2s",
+          alignItems: "center",
+          zIndex: 5,
+        }}
+        onClick={activeSearch}
+      >
+        <BiSearch fontSize="1.3rem" />
+      </Button>
+    );
   }
 
   return (
@@ -48,9 +79,7 @@ export default function Search() {
           <input
             ref={input}
             onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                activeSearch();
-              }
+              if (e.key === "Enter") activeSearch();
             }}
             autoFocus
             onChange={({ currentTarget }) => {
@@ -59,26 +88,9 @@ export default function Search() {
             value={text}
             type="text"
           />
-          <div
-            onClick={() => {
-              toggleSearch();
-            }}
-            className="exit"
-          >
-            <MdClose />
-          </div>
+          <CloseButton />
         </div>
-        <Button
-          style={{
-            borderRadius: open ? "0 0.2rem 0.2rem 0" : "0.2rem",
-            transition: "background-color 500ms, color 500ms, border-radius 2s",
-            alignItems: "center",
-            zIndex: 5,
-          }}
-          onClick={activeSearch}
-        >
-          <BiSearch fontSize="1.3rem" />
-        </Button>
+        <SearchButton />
       </div>
 
       <section
