@@ -20,6 +20,7 @@
   top: 25px;
   right: 50%;
   opacity: 0;
+  pointer-events: none;
   /* transform: scale(0); */
   transform-origin: top;
 
@@ -28,6 +29,7 @@
 
 .mobile_menu.open {
   opacity: 1;
+  pointer-events: visible;
   /* transform: scale(1); */
 }
 
