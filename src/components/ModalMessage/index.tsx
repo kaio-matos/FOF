@@ -17,20 +17,18 @@ export type ModalMessageProps = {
 };
 
 export default function ModalMessage({ currentState }: ModalMessageProps) {
-  const time = 5000;
+  const DefaultTime = 5000;
+  const time = currentState.time ? currentState.time : DefaultTime;
   const [state, setState] = useState(false);
 
   useEffect(() => {
     if (currentState.message !== StandardMessage.message) {
       setState(true);
-      setTimeout(
-        () => {
-          setState(false);
-        },
-        currentState.time ? currentState.time : time
-      );
+      setTimeout(() => {
+        setState(false);
+      }, time);
     }
-  }, [currentState]);
+  }, [currentState, time]);
 
   return (
     <div className={`modal text ${currentState.type} ${state ? "on" : "off"}`}>
