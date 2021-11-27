@@ -60,9 +60,13 @@ export function APIContextProvider({ children }: APIContextProviderProps) {
       const pjs: ProjectsStorage = JSON.parse(
         localStorage.getItem("projects") + ""
       );
-      const requestedDate = new Date(pjs.timestamp);
+      const requestedDate = new Date(pjs?.timestamp);
 
-      if (pjs !== null && pjs.projects.length && !isExpired(requestedDate, 2)) {
+      if (
+        pjs !== null &&
+        pjs.projects?.length &&
+        !isExpired(requestedDate, 2)
+      ) {
         GlobalGivingAPI.nextProjectId = String(pjs.projects.length);
         setProjects(pjs.projects);
       } else {
