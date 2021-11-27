@@ -30,6 +30,7 @@ export default function Search() {
   function activeSearch() {
     if (open && text !== "" && isVisible) {
       searchProjects(text);
+      input.current?.blur();
     } else {
       toggleSearch();
     }
@@ -80,7 +81,6 @@ export default function Search() {
             onKeyDown={(e) => {
               if (e.key === "Enter") activeSearch();
             }}
-            autoFocus
             onChange={({ currentTarget }) => {
               setText(currentTarget.value);
             }}
