@@ -8,7 +8,7 @@ export default function Error404() {
         paragraph=""
         link={{
           url: "FOF",
-          text: "Go to Home",
+          text: "Go Home",
         }}
         image="https://source.unsplash.com/random"
       />
