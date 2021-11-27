@@ -39,7 +39,7 @@ export default function Footer() {
           <p className="title footer_title">About Us</p>
           {aboutLinks.map((link) => {
             return (
-              <CustomLink className="footer_link" to={link.to}>
+              <CustomLink key={link.text} className="footer_link" to={link.to}>
                 {link.text}
               </CustomLink>
             );
@@ -49,7 +49,7 @@ export default function Footer() {
           <p className="title footer_title">Resources</p>
           {resourceLinks.map((link) => {
             return (
-              <CustomLink className="footer_link" to={link.to}>
+              <CustomLink key={link.text} className="footer_link" to={link.to}>
                 {link.text}
               </CustomLink>
             );
@@ -59,18 +59,18 @@ export default function Footer() {
           <p className="title footer_title">Join Us</p>
           {joinusLinks.map((link) => {
             return (
-              <CustomLink className="footer_link" to={link.to}>
+              <CustomLink key={link.text} className="footer_link" to={link.to}>
                 {link.text}
               </CustomLink>
             );
           })}
         </div>
         <div className="footer_col">
-          <div className="footer_col_contact">
+          <div className="footer_contact_row">
             <sub className="text ">Donate by phone</sub>
             <p className="title">1800 352 352</p>
           </div>
-          <div className="footer_col_contact">
+          <div className="footer_contact_row">
             <sub className="text">Join our comunnity</sub>
             <div>
               <Link to="">
@@ -87,7 +87,7 @@ export default function Footer() {
               </Link>
             </div>
           </div>
-          <div className="footer_col_contact">
+          <div className="footer_contact_row">
             <sub className="text">Stay up to Date</sub>
             <ButtonOutline className="footer_subscribe_button">
               SUBSCRIBE
