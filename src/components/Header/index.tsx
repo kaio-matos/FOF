@@ -10,7 +10,6 @@ import "./styles.css";
 export default function Header() {
   const [mobile, setMobile] = useState(false);
   const [background, setBackground] = useState(false);
-  const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
   useEffect(() => {
     function checkSize() {
@@ -31,10 +30,6 @@ export default function Header() {
     window.addEventListener("scroll", backgroundHeader);
     return () => window.removeEventListener("scroll", backgroundHeader);
   }, []);
-
-  function toggleMobileMenu() {
-    setOpenMobileMenu(!openMobileMenu);
-  }
 
   function HeaderLogo() {
     return (
@@ -66,6 +61,25 @@ export default function Header() {
     );
   }
 
+  function MobileMenu() {
+    const [openMobileMenu, setOpenMobileMenu] = useState(false);
+    function toggleMobileMenu() {
+      setOpenMobileMenu(!openMobileMenu);
+    }
+
+    return (
+      <div className="mobile_header_menu_container">
+        <Button onClick={toggleMobileMenu}>
+          <AiOutlineMenu />
+        </Button>
+
+        <div className={`mobile_header_menu ${openMobileMenu ? "open" : ""}`}>
+          <HeaderButtons />
+        </div>
+      </div>
+    );
+  }
+
   if (!mobile) {
     return (
       <header className={`header ${background ? "background" : ""}`}>
@@ -79,15 +93,7 @@ export default function Header() {
     <header className={`header ${background ? "background" : ""}`}>
       <HeaderLogo />
 
-      <div className="mobile_header_menu_container">
-        <Button onClick={toggleMobileMenu}>
-          <AiOutlineMenu />
-        </Button>
-
-        <div className={`mobile_header_menu ${openMobileMenu ? "open" : ""}`}>
-          <HeaderButtons />
-        </div>
-      </div>
+      <MobileMenu />
     </header>
   );
 }
