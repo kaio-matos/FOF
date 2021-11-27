@@ -1,0 +1,96 @@
+footer {
+  background-color: var(--third-color);
+  padding: 5rem;
+}
+
+footer hr {
+  border: 1px solid var(--secondary-color);
+}
+
+.footer_link {
+  font-weight: 400 !important;
+}
+
+.footer_information {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.footer_title {
+  color: var(--primary-color);
+  text-transform: uppercase;
+}
+
+.footer_col a {
+  display: flex;
+}
+
+.footer_col_contact {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.footer_col_contact p {
+  color: var(--primary-color);
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.footer_col_contact sub {
+  color: var(--neutral-color);
+}
+
+.footer_col_contact > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2.3rem;
+  margin-top: 0.2rem;
+}
+
+.footer_col_contact > div > * {
+  color: var(--primary-color);
+  transition: 500ms;
+}
+
+.footer_col_contact > div > *:hover {
+  color: var(--neutral-color);
+}
+
+.footer_subscribe_button {
+  font-size: 1.3rem;
+  margin-top: 0.2rem;
+}
+
+.footer_additional_information {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer_additional_information {
+  color: var(--neutral-color);
+}
+
+.footer_additional_information div:first-child {
+  margin: 1rem 0;
+}
+
+.footer_additional_information div:first-child,
+.footer_additional_information div:first-child a {
+  color: var(--neutral-color);
+  opacity: 0.7;
+  text-decoration: none;
+  transition: 500ms;
+}
+.footer_additional_information div:first-child a:hover {
+  opacity: 1;
+}
+
+.footer_additional_information div:last-child p {
+  opacity: 0.4;
+  font-weight: 500;
+}

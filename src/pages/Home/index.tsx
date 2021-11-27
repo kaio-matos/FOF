@@ -14,7 +14,7 @@ export default function Home() {
   const isVisible = useIsShowingElement(lazyLoadDetector);
 
   useEffect(() => {
-    lazyLoadProjects();
+    // lazyLoadProjects();
   }, [isVisible]);
 
   return (
