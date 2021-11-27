@@ -1,12 +1,12 @@
-import "./styles.css";
-import CustomLink from "../CustomLink";
-import { Link } from "react-router-dom";
-import Search from "../Search";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
-import useWindowSize from "../../hooks/useWindowSize";
+import CustomLink from "../CustomLink";
+import Search from "../Search";
 import Button from "../Buttons/Button";
 import FOF_extended from "../../assets/extended_logo.svg";
+import useWindowSize from "../../hooks/useWindowSize";
+import "./styles.css";
 
 export default function Header() {
   const [mobile, setMobile] = useState(false);

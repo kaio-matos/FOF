@@ -1,11 +1,11 @@
-import "./styles.css";
-import CustomLink from "../CustomLink";
+import { Link } from "react-router-dom";
+import { AiOutlineTwitter } from "react-icons/ai";
 import { ImInstagram } from "react-icons/im";
 import { BsYoutube } from "react-icons/bs";
-import { AiOutlineTwitter } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
+import CustomLink from "../CustomLink";
 import ButtonOutline from "../Buttons/ButtonOutline";
-import { Link } from "react-router-dom";
+import "./styles.css";
 
 export default function Footer() {
   const aboutLinks = [

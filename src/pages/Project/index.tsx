@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { projectType } from "../../api/types";
 import Hero from "../../components/Hero";
-import Loading from "../../components/Loading";
 import ModalLoading from "../../components/ModalLoading";
 import ModalMessage from "../../components/ModalMessage";
 import { useAPI } from "../../contexts/APIContext";
+import { projectType } from "../../api/types";
 import "./styles.css";
 
 export default function Project() {

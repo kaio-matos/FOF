@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
-import { useAPI } from "../../contexts/APIContext";
-import useIsShowingElement from "../../hooks/useIsShowingElement";
 import Button from "../Buttons/Button";
-import Card from "../Card";
 import CardContainer from "../CardContainer";
 import ModalLoading from "../ModalLoading";
+import { useAPI } from "../../contexts/APIContext";
+import useIsShowingElement from "../../hooks/useIsShowingElement";
 import "./styles.css";
 
 export default function Search() {

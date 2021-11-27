@@ -1,6 +1,6 @@
-import "./styles.css";
-import { projectType } from "../../api/types";
 import Card from "../Card";
+import { projectType } from "../../api/types";
+import "./styles.css";
 
 export default function CardContainer({
   projects,

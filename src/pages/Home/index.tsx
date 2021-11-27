@@ -1,12 +1,12 @@
-import "./styles.css";
-import { useAPI } from "../../contexts/APIContext";
+import { useEffect, useRef } from "react";
 import Hero from "../../components/Hero";
 import Loading from "../../components/Loading";
-import { useEffect, useRef } from "react";
-import useIsShowingElement from "../../hooks/useIsShowingElement";
 import ModalMessage from "../../components/ModalMessage";
 import CardContainer from "../../components/CardContainer";
 import backgroundImage from "../../assets/bg-children.jpg";
+import { useAPI } from "../../contexts/APIContext";
+import useIsShowingElement from "../../hooks/useIsShowingElement";
+import "./styles.css";
 
 export default function Home() {
   const { projects, loading, lazyLoadProjects, message } = useAPI();
@@ -14,7 +14,7 @@ export default function Home() {
   const isVisible = useIsShowingElement(lazyLoadDetector);
 
   useEffect(() => {
-    // lazyLoadProjects();
+    lazyLoadProjects();
   }, [isVisible]);
 
   return (
