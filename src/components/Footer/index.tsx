@@ -73,16 +73,16 @@ export default function Footer() {
           <div className="footer_contact_row">
             <sub className="text">Join our comunnity</sub>
             <div>
-              <Link to="">
+              <Link to="FOF">
                 <FaFacebookF />
               </Link>
-              <Link to="">
+              <Link to="FOF">
                 <AiOutlineTwitter />
               </Link>
-              <Link to="">
+              <Link to="FOF">
                 <BsYoutube />
               </Link>
-              <Link to="">
+              <Link to="FOF">
                 <ImInstagram />
               </Link>
             </div>
