@@ -5,18 +5,32 @@ import CustomLink from "../CustomLink";
 import Search from "../Search";
 import Button from "../Buttons/Button";
 import FOF_extended from "../../assets/extended_logo.svg";
-import useWindowSize from "../../hooks/useWindowSize";
 import "./styles.css";
 
 export default function Header() {
   const [mobile, setMobile] = useState(false);
+  const [background, setBackground] = useState(false);
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
-  const [width] = useWindowSize();
 
   useEffect(() => {
-    if (width <= 660) setMobile(true);
-    else setMobile(false);
-  }, [width]);
+    function checkSize() {
+      if (window.innerWidth <= 660) setMobile(true);
+      else setMobile(false);
+    }
+    window.addEventListener("resize", checkSize);
+    checkSize();
+    return () => window.removeEventListener("resize", checkSize);
+  }, []);
+
+  useEffect(() => {
+    function backgroundHeader() {
+      if (window.scrollY >= window.innerHeight / 1.5) setBackground(true);
+      else setBackground(false);
+    }
+
+    window.addEventListener("scroll", backgroundHeader);
+    return () => window.removeEventListener("scroll", backgroundHeader);
+  }, []);
 
   function toggleMobileMenu() {
     setOpenMobileMenu(!openMobileMenu);
@@ -54,7 +68,7 @@ export default function Header() {
 
   if (!mobile) {
     return (
-      <header className="header">
+      <header className={`header ${background ? "background" : ""}`}>
         <HeaderLogo />
         <HeaderButtons />
       </header>
@@ -62,14 +76,14 @@ export default function Header() {
   }
 
   return (
-    <header className="header">
+    <header className={`header ${background ? "background" : ""}`}>
       <HeaderLogo />
 
-      <Button onClick={toggleMobileMenu}>
-        <AiOutlineMenu />
-      </Button>
-
       <div className="mobile_header_menu_container">
+        <Button onClick={toggleMobileMenu}>
+          <AiOutlineMenu />
+        </Button>
+
         <div className={`mobile_header_menu ${openMobileMenu ? "open" : ""}`}>
           <HeaderButtons />
         </div>
