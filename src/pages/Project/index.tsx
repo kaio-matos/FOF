@@ -15,7 +15,7 @@ export default function Project() {
   const completeGoal = Number(project?.remaining._text) === 0;
 
   useEffect(() => {
-    window.scrollTo({ top: 0 });
+    window.scrollTo({ top: 0, behavior: "smooth" });
     (async () => {
       const pj = await getProject(Number(id));
       if (pj) setProject(pj);
