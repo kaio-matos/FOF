@@ -15,16 +15,16 @@ export default function Project() {
   const completeGoal = Number(project?.remaining._text) === 0;
 
   useEffect(() => {
+    window.scrollTo({ top: 0 });
     (async () => {
       const pj = await getProject(Number(id));
-      if (pj) {
-        setProject(pj);
-      }
+      if (pj) setProject(pj);
     })();
   }, []);
 
   return (
-    <main>
+    <main className="main">
+      <ModalLoading showWhen={loading} />
       {project ? (
         <>
           <section>
@@ -42,8 +42,6 @@ export default function Project() {
             />
           </section>
           <div className="content_container">
-            <ModalLoading showWhen={loading} />
-
             <section className="information_container">
               <div className="information_title_text">
                 <span className="title">Long term impact</span>
