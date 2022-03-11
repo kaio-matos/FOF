@@ -26,3 +26,7 @@ O site utiliza a API da Global Giving que nos proporciona as informações em XM
 - Xml - Js
 - HTML
 - CSS
+
+<a href="https://www.linkedin.com/in/kaio-matos/" target="_blank">
+  <img width="50" src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg'>
+<a/>  
